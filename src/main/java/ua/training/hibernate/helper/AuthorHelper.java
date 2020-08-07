@@ -3,7 +3,6 @@ package ua.training.hibernate.helper;
 import org.hibernate.Session;
 import ua.training.hibernate.entity.Author;
 
-import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -26,10 +25,8 @@ public class AuthorHelper {
         Root<Author> root = criteriaQuery.from(Author.class);
         criteriaQuery.select(root);
 
-        Query query = session.createQuery(criteriaQuery);
-        List<Author> authorList = query.getResultList();
-
-        return authorList;
+        return session.createQuery(criteriaQuery)
+                .getResultList();
     }
 
     public Author getAuthor(String name) {
