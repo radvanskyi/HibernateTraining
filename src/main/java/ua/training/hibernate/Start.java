@@ -13,10 +13,14 @@ public class Start {
     private static final Logger LOG = Logger.getLogger(Start.class.getName());
 
     public static void main(String[] args) {
-
         Session session = HibernateUtil.getSessionFactory().openSession();
+        AuthorHelper authorHelper = new AuthorHelper(session);
 
-        for (Author author : new AuthorHelper(session).getAuthorList()) {
+//        Author newAuthor = new Author("test");
+//        authorHelper.addAuthor(newAuthor);
+        authorHelper.addAuthors();
+
+        for (Author author : authorHelper.getAuthorList()) {
             LOG.error("Author - " + author.getName());
         }
 
@@ -25,6 +29,5 @@ public class Start {
         }
 
         session.close();
-        
     }
 }

@@ -29,6 +29,26 @@ public class AuthorHelper {
                 .getResultList();
     }
 
+    public Author addAuthor(Author author) {
+        session.beginTransaction();
+        session.save(author);
+        session.getTransaction().commit();
+
+        return author;
+    }
+
+    public void addAuthors() {
+        session.beginTransaction();
+        for (int i = 0; i < 200; i++) {
+            if (i % 10 == 0) {
+                session.flush();
+            }
+            Author author = new Author("name" + i, "secondName" + i);
+            session.save(author);
+        }
+        session.getTransaction().commit();
+    }
+
     public Author getAuthor(String name) {
         return null;
     }
