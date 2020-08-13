@@ -18,15 +18,15 @@ public class Start {
 
 //        Author newAuthor = new Author("test");
 //        authorHelper.addAuthor(newAuthor);
-        authorHelper.addAuthors();
+//        authorHelper.addAuthors();
 
         for (Author author : authorHelper.getAuthorList()) {
-            LOG.error("Author - " + author.getName());
+            LOG.error(author.getName() + " - " + author.getSecondName());
         }
-
-        for (Book book : new BookHelper(session).getBookList()) {
-            LOG.error("Book - " + book.getBookName());
-        }
+//
+//        for (Book book : new BookHelper(session).getBookList()) {
+//            LOG.error("Book - " + book.getBookName());
+//        }
 
         session.close();
     }
