@@ -1,5 +1,6 @@
 package ua.training.hibernate.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -18,8 +19,8 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @DynamicUpdate
 @DynamicInsert
 public class Author implements Serializable {
@@ -28,11 +29,19 @@ public class Author implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NonNull
     private String name;
 
-    @NonNull
     @Column(name = "second_name")
     private String secondName;
+
+    public Author(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Author(String name) {
+        this.name = name;
+    }
+
 
 }

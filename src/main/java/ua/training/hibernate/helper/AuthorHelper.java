@@ -2,6 +2,7 @@ package ua.training.hibernate.helper;
 
 import org.hibernate.Session;
 import ua.training.hibernate.entity.Author;
+import ua.training.hibernate.entity.Author_;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -24,7 +25,7 @@ public class AuthorHelper {
         CriteriaQuery<Author> criteriaQuery = criteriaBuilder.createQuery(Author.class);
 
         Root<Author> root = criteriaQuery.from(Author.class);
-        Selection[] selections = {root.get("name"), root.get("secondName")};
+        Selection[] selections = {root.get(Author_.id), root.get(Author_.name)};
 
         criteriaQuery.select(criteriaBuilder.construct(Author.class, selections));
 
@@ -46,7 +47,7 @@ public class AuthorHelper {
             if (i % 10 == 0) {
                 session.flush();
             }
-            Author author = new Author("name" + i, "secondName" + i);
+            Author author = new Author(i, "name" + i, "secondName" + i);
             session.save(author);
         }
         session.getTransaction().commit();

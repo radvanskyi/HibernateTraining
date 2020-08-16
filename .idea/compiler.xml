@@ -4,6 +4,12 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.8" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="HibernateSource_generated" target="1.8" />
+      <module name="HibernateSource_jpaModelgen" target="1.8" />
+      <module name="HibernateSource_main" target="1.8" />
+      <module name="HibernateSource_test" target="1.8" />
+      <module name="HibernateSource_unitTest" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

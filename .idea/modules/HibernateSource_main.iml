@@ -4,14 +4,14 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" value="5c96a7f2-450e-4f79-be6b-e1a4efff86ea" />
+          <unit-entry name="hibernate.cfg.xml" value="675d3012-0002-4e55-8623-f078b5de7b13" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/../../src/main/resources/hibernate.cfg.xml" />
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/../../build/classes/java/main" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../src/main">
@@ -23,6 +23,7 @@
     <orderEntry type="library" name="Gradle: org.hibernate:hibernate-core:5.4.19.Final" level="project" />
     <orderEntry type="library" name="Gradle: mysql:mysql-connector-java:8.0.19" level="project" />
     <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.18.12" level="project" />
+    <orderEntry type="library" name="Gradle: org.hibernate:hibernate-jpamodelgen:5.0.11.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-log4j12:2.0.0-alpha1" level="project" />
     <orderEntry type="library" name="Gradle: org.hibernate.common:hibernate-commons-annotations:5.1.0.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss.logging:jboss-logging:3.3.2.Final" level="project" />

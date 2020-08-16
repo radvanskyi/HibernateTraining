@@ -19,7 +19,7 @@ public class Start {
 //        Author newAuthor = new Author("test");
 //        authorHelper.addAuthor(newAuthor);
 //        authorHelper.addAuthors();
-
+//
         for (Author author : authorHelper.getAuthorList()) {
             LOG.error(author.getName() + " - " + author.getSecondName());
         }
