@@ -21,7 +21,7 @@ public class Start {
 //        authorHelper.addAuthors();
 //
         for (Author author : authorHelper.getAuthorList()) {
-            LOG.error(author.getName() + " - " + author.getSecondName());
+            LOG.debug(author.getName() + " - " + author.getSecondName());
         }
 //
 //        for (Book book : new BookHelper(session).getBookList()) {

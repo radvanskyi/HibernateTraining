@@ -4,8 +4,11 @@ import org.hibernate.Session;
 import ua.training.hibernate.entity.Author;
 import ua.training.hibernate.entity.Author_;
 
+import javax.persistence.Parameter;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
 import java.util.List;
@@ -27,10 +30,15 @@ public class AuthorHelper {
         Root<Author> root = criteriaQuery.from(Author.class);
         Selection[] selections = {root.get(Author_.id), root.get(Author_.name)};
 
-        criteriaQuery.select(criteriaBuilder.construct(Author.class, selections));
+        ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class, "name");
 
-        return session.createQuery(criteriaQuery)
-                .getResultList();
+        criteriaQuery.select(criteriaBuilder.construct(Author.class, selections))
+                .where(criteriaBuilder.like(root.get(Author_.name), parameter));
+
+        Query query = session.createQuery(criteriaQuery);
+        query.setParameter("name", "%1%");
+
+        return query.getResultList();
     }
 
     public Author addAuthor(Author author) {
