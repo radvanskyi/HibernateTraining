@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import ua.training.hibernate.HibernateUtil;
 import ua.training.hibernate.entity.Author;
 import ua.training.hibernate.entity.Author_;
+import ua.training.hibernate.entity.CommonFields_;
 
 public class AuthorHelper {
 
@@ -26,10 +27,10 @@ public class AuthorHelper {
         CriteriaQuery<Author> criteriaQuery = criteriaBuilder.createQuery(Author.class);
 
         Root<Author> root = criteriaQuery.from(Author.class);
-        Selection[] selections = {root.get(Author_.id), root.get(Author_.name)};
+        Selection[] selections = {root.get(Author_.id), root.get(Author_.commonFields).get(CommonFields_.name)};
 
         ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class, "name");
-        criteriaQuery.select(criteriaBuilder.construct(Author.class, selections)).where(criteriaBuilder.like(root.get(Author_.name), parameter));
+        criteriaQuery.select(criteriaBuilder.construct(Author.class, selections)).where(criteriaBuilder.like(root.get(Author_.commonFields).get(CommonFields_.name), parameter));
 
         Query query = session.createQuery(criteriaQuery);
         query.setParameter("name", "%1%");
@@ -47,19 +48,19 @@ public class AuthorHelper {
         return author;
     }
 
-    public void addAuthors() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        for (int i = 0; i < 200; i++) {
-            if (i % 10 == 0) {
-                session.flush();
-            }
-            Author author = new Author(i, "name" + i);
-            session.save(author);
-        }
-        session.getTransaction().commit();
-        session.close();
-    }
+//    public void addAuthors() {
+//        Session session = HibernateUtil.getSessionFactory().openSession();
+//        session.beginTransaction();
+//        for (int i = 0; i < 200; i++) {
+//            if (i % 10 == 0) {
+//                session.flush();
+//            }
+//            Author author = new Author(i, "name" + i);
+//            session.save(author);
+//        }
+//        session.getTransaction().commit();
+//        session.close();
+//    }
 
     public Author getAuthor(Long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -86,7 +87,7 @@ public class AuthorHelper {
         Root<Author> root = criteriaDelete.from(Author.class);
 
         ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class, "name");
-        criteriaDelete.where(criteriaBuilder.like(root.get(Author_.name), parameter));
+        criteriaDelete.where(criteriaBuilder.like(root.get(Author_.commonFields).get(CommonFields_.name), parameter));
 
         Query query = session.createQuery(criteriaDelete);
         query.setParameter("name", "%1%");
@@ -106,7 +107,7 @@ public class AuthorHelper {
         Root<Author> root = criteriaUpdate.from(Author.class);
         ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class, "name");
         Expression<Integer> length = criteriaBuilder.length(root.get(Author_.secondName));
-        criteriaUpdate.set(root.get(Author_.name), parameter).where(criteriaBuilder.greaterThan(length, 5));
+        criteriaUpdate.set(root.get(Author_.commonFields).get(CommonFields_.name), parameter).where(criteriaBuilder.greaterThan(length, 5));
 
         Query query = session.createQuery(criteriaUpdate);
         query.setParameter("name", "1");

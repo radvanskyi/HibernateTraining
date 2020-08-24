@@ -14,26 +14,7 @@ public class Start {
         AuthorHelper authorHelper = new AuthorHelper();
         BookHelper bookHelper = new BookHelper();
 
-//        Author newAuthor = new Author("test");
-//        authorHelper.addAuthor(newAuthor);
-//        authorHelper.addAuthors();
-//
-//        for (Author author : authorHelper.getAuthorList()) {
-//            LOG.error(author.getName() + " - " + author.getSecondName());
-//        }
-//
-//        LOG.error("======================================================");
-//        authorHelper.deleteGroup();
-//
-//        for (Author author : authorHelper.getAuthorList()) {
-//            LOG.error(author.getName() + " - " + author.getSecondName());
-//        }
-//
-//        for (Book book : new BookHelper(session).getBookList()) {
-//            LOG.error("Book - " + book.getBookName());
-//        }
-
-        LOG.error(authorHelper.getAuthor(10L));
+        bookHelper.getBookList();
 
     }
 }
