@@ -1,9 +1,6 @@
 package ua.training.hibernate;
 
-import org.hibernate.Session;
 import org.jboss.logging.Logger;
-import ua.training.hibernate.entity.Author;
-import ua.training.hibernate.entity.Book;
 import ua.training.hibernate.helper.AuthorHelper;
 import ua.training.hibernate.helper.BookHelper;
 
@@ -15,25 +12,28 @@ public class Start {
     public static void main(String[] args) {
 
         AuthorHelper authorHelper = new AuthorHelper();
+        BookHelper bookHelper = new BookHelper();
 
 //        Author newAuthor = new Author("test");
 //        authorHelper.addAuthor(newAuthor);
 //        authorHelper.addAuthors();
 //
-        for (Author author : authorHelper.getAuthorList()) {
-            LOG.error(author.getName() + " - " + author.getSecondName());
-        }
-
-        LOG.error("======================================================");
-        authorHelper.deleteGroup();
-
-        for (Author author : authorHelper.getAuthorList()) {
-            LOG.error(author.getName() + " - " + author.getSecondName());
-        }
+//        for (Author author : authorHelper.getAuthorList()) {
+//            LOG.error(author.getName() + " - " + author.getSecondName());
+//        }
+//
+//        LOG.error("======================================================");
+//        authorHelper.deleteGroup();
+//
+//        for (Author author : authorHelper.getAuthorList()) {
+//            LOG.error(author.getName() + " - " + author.getSecondName());
+//        }
 //
 //        for (Book book : new BookHelper(session).getBookList()) {
 //            LOG.error("Book - " + book.getBookName());
 //        }
+
+        LOG.error(authorHelper.getAuthor(10L));
 
     }
 }

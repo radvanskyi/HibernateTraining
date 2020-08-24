@@ -1,13 +1,12 @@
 package ua.training.hibernate.helper;
 
-import org.hibernate.Session;
-import ua.training.hibernate.HibernateUtil;
-import ua.training.hibernate.entity.Book;
-
+import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
+import org.hibernate.Session;
+import ua.training.hibernate.HibernateUtil;
+import ua.training.hibernate.entity.Book;
 
 public class BookHelper {
 

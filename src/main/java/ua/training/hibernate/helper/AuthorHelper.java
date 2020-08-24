@@ -54,15 +54,16 @@ public class AuthorHelper {
             if (i % 10 == 0) {
                 session.flush();
             }
-            Author author = new Author(i, "name" + i, "secondName" + i);
+            Author author = new Author(i, "name" + i);
             session.save(author);
         }
         session.getTransaction().commit();
         session.close();
     }
 
-    public Author getAuthor(String name) {
-        return null;
+    public Author getAuthor(Long id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return session.get(Author.class, id);
     }
 
     public void delete(long id) {

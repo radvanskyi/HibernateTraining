@@ -1,6 +1,7 @@
 package ua.training.hibernate.entity;
 
 import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -11,6 +12,7 @@ public abstract class Author_ {
 	public static volatile SingularAttribute<Author, String> name;
 	public static volatile SingularAttribute<Author, Long> id;
 	public static volatile SingularAttribute<Author, String> secondName;
+	public static volatile ListAttribute<Author, Book> bookList;
 
 }
 
