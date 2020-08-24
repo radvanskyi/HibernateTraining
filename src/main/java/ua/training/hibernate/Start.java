@@ -14,7 +14,7 @@ public class Start {
         AuthorHelper authorHelper = new AuthorHelper();
         BookHelper bookHelper = new BookHelper();
 
-        bookHelper.getBookList();
+        authorHelper.getAuthorList();
 
     }
 }

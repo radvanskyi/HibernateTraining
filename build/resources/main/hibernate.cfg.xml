@@ -22,6 +22,7 @@
 
     <mapping class="ua.training.hibernate.entity.Author"/>
     <mapping class="ua.training.hibernate.entity.Book"/>
+    <mapping class="ua.training.hibernate.entity.Reader"/>
 
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->

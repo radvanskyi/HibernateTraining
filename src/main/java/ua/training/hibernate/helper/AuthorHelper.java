@@ -1,6 +1,7 @@
 package ua.training.hibernate.helper;
 
 import java.util.List;
+import javax.persistence.EntityGraph;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
@@ -28,14 +29,17 @@ public class AuthorHelper {
 
         Root<Author> root = criteriaQuery.from(Author.class);
         Selection[] selections = {root.get(Author_.id), root.get(Author_.commonFields).get(CommonFields_.name)};
-
         ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class, "name");
-        criteriaQuery.select(criteriaBuilder.construct(Author.class, selections)).where(criteriaBuilder.like(root.get(Author_.commonFields).get(CommonFields_.name), parameter));
-
+        criteriaQuery.select(root).distinct(true);
         Query query = session.createQuery(criteriaQuery);
-        query.setParameter("name", "%1%");
 
-        return (List<Author>) query.getResultList();
+        EntityGraph entityGraph = session.createEntityGraph("author.books");
+        query.setHint("javax.persistence.fetchGraph", entityGraph);
+
+        List<Author> authorList = query.getResultList();
+        session.close();
+
+        return authorList;
     }
 
     public Author addAuthor(Author author) {

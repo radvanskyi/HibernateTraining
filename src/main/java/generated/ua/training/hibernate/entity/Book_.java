@@ -1,6 +1,7 @@
 package ua.training.hibernate.entity;
 
 import javax.annotation.Generated;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
@@ -8,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Book.class)
 public abstract class Book_ extends ua.training.hibernate.entity.BaseEntity_ {
 
+	public static volatile SetAttribute<Book, Reader> readers;
 	public static volatile SingularAttribute<Book, Author> author;
 
 }
