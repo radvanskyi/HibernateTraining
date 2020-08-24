@@ -13,21 +13,27 @@ public class Start {
     private static final Logger LOG = Logger.getLogger(Start.class.getName());
 
     public static void main(String[] args) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        AuthorHelper authorHelper = new AuthorHelper(session);
+
+        AuthorHelper authorHelper = new AuthorHelper();
 
 //        Author newAuthor = new Author("test");
 //        authorHelper.addAuthor(newAuthor);
 //        authorHelper.addAuthors();
 //
         for (Author author : authorHelper.getAuthorList()) {
-            LOG.debug(author.getName() + " - " + author.getSecondName());
+            LOG.error(author.getName() + " - " + author.getSecondName());
+        }
+
+        LOG.error("======================================================");
+        authorHelper.deleteGroup();
+
+        for (Author author : authorHelper.getAuthorList()) {
+            LOG.error(author.getName() + " - " + author.getSecondName());
         }
 //
 //        for (Book book : new BookHelper(session).getBookList()) {
 //            LOG.error("Book - " + book.getBookName());
 //        }
 
-        session.close();
     }
 }
