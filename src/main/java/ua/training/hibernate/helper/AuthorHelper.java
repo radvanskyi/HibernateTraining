@@ -5,6 +5,8 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Selection;
@@ -87,6 +89,26 @@ public class AuthorHelper {
 
         Query query = session.createQuery(criteriaDelete);
         query.setParameter("name", "%1%");
+        query.executeUpdate();
+
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void update() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaUpdate<Author> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Author.class);
+
+        Root<Author> root = criteriaUpdate.from(Author.class);
+        ParameterExpression<String> parameter = criteriaBuilder.parameter(String.class, "name");
+        Expression<Integer> length = criteriaBuilder.length(root.get(Author_.secondName));
+        criteriaUpdate.set(root.get(Author_.name), parameter).where(criteriaBuilder.greaterThan(length, 5));
+
+        Query query = session.createQuery(criteriaUpdate);
+        query.setParameter("name", "1");
         query.executeUpdate();
 
         session.getTransaction().commit();
